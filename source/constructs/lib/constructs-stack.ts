@@ -29,7 +29,7 @@ export class ConstructsStack extends cdk.Stack {
     const sourceBucketsParameter = new CfnParameter(this, 'SourceBuckets', {
       type: 'String',
       description: '(Required) List the buckets (comma-separated) within your account that contain original image files. If you plan to use Thumbor or Custom image requests with this solution, the source bucket for those requests will be the first bucket listed in this field.',
-      default: 'defaultBucket, bucketNo2, bucketNo3, ...',
+      default: 'getcrafty',
       allowedPattern: '.+'
     });
     const deployDemoUiParameter = new CfnParameter(this, 'DeployDemoUI', {
@@ -41,13 +41,13 @@ export class ConstructsStack extends cdk.Stack {
     const logRetentionPeriodParameter = new CfnParameter(this, 'LogRetentionPeriod', {
       type: 'Number',
       description: 'This solution automatically logs events to Amazon CloudWatch. Select the amount of time for CloudWatch logs from this solution to be retained (in days).',
-      default: '1',
+      default: '7',
       allowedValues: [ '1', '3', '5', '7', '14', '30', '60', '90', '120', '150', '180', '365', '400', '545', '731', '1827', '3653' ]
     });
     const autoWebPParameter = new CfnParameter(this, 'AutoWebP', {
       type: 'String',
       description: `Would you like to enable automatic WebP based on accept headers? Select 'Yes' if so.`,
-      default: 'No',
+      default: 'Yes',
       allowedValues: [ 'Yes', 'No' ]
     });
     const enableSignatureParameter = new CfnParameter(this, 'EnableSignature', {
@@ -69,18 +69,18 @@ export class ConstructsStack extends cdk.Stack {
     const enableDefaultFallbackImageParameter = new CfnParameter(this, 'EnableDefaultFallbackImage', {
       type: 'String',
       description: `Would you like to enable the default fallback image? If so, select 'Yes' and provide FallbackImageS3Bucket and FallbackImageS3Key values.`,
-      default: 'No',
+      default: 'Yes',
       allowedValues: [ 'Yes', 'No' ]
     });
     const fallbackImageS3BucketParameter = new CfnParameter(this, 'FallbackImageS3Bucket', {
       type: 'String',
       description: 'The name of the Amazon S3 bucket which contains the default fallback image. e.g. my-fallback-image-bucket',
-      default: ''
+      default: 'getcrafty'
     });
     const fallbackImageS3KeyParameter = new CfnParameter(this, 'FallbackImageS3Key', {
       type: 'String',
       description: 'The name of the default fallback image object key including prefix. e.g. prefix/image.jpg',
-      default: ''
+      default: 'logo.jpg'
     });
 
     // CFN descrption

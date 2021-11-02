@@ -159,10 +159,7 @@ export class ServerlessImageHandler extends Construct {
       // ImageHandlerFunction
       const imageHandlerFunction = new cdkLambda.Function(this, 'ImageHanlderFunction', {
         description: 'Serverless Image Handler - Function for performing image edits and manipulations.',
-        code: new cdkLambda.S3Code(
-          cdkS3.Bucket.fromBucketArn(this, 'ImageHandlerLambdaSource', `arn:${cdk.Aws.PARTITION}:s3:::${BUCKET_NAME}-${cdk.Aws.REGION}`),
-          `${SOLUTION_NAME}/${VERSION}/image-handler.zip`
-        ),
+        code: cdkLambda.Code.fromAsset('../image-handler'),
         handler: 'index.handler',
         runtime: cdkLambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(30),
@@ -535,10 +532,7 @@ export class ServerlessImageHandler extends Construct {
       // CustomResourceFunction
       const customResourceFunction = new cdkLambda.Function(this, 'CustomResourceFunction', {
         description: 'Serverless Image Handler - Custom resource',
-        code: new cdkLambda.S3Code(
-          cdkS3.Bucket.fromBucketArn(this, 'CustomResourceLambdaSource', `arn:${cdk.Aws.PARTITION}:s3:::${BUCKET_NAME}-${cdk.Aws.REGION}`),
-          `${SOLUTION_NAME}/${VERSION}/custom-resource.zip`
-        ),
+        code: cdkLambda.Code.fromAsset('../custom-resource'),
         handler: 'index.handler',
         runtime: cdkLambda.Runtime.NODEJS_12_X,
         timeout: cdk.Duration.seconds(60),
