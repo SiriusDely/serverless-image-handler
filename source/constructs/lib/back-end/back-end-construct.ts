@@ -65,7 +65,8 @@ export class BackEnd extends Construct {
       handler: 'image-handler/index.handler',
       timeout: Duration.minutes(15),
       memorySize: 1_024,
-      code: Code.fromBucket(sourceCodeBucket, [props.sourceCodeKeyPrefix, 'image-handler.zip'].join('/')),
+      // code: Code.fromBucket(sourceCodeBucket, [props.sourceCodeKeyPrefix, 'image-handler.zip'].join('/')),
+      code: Code.fromAsset('../image-handler/dist'),
       role: imageHandlerLambdaFunctionRole,
       environment: {
         AUTO_WEBP: props.autoWebP,

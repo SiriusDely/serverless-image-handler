@@ -100,7 +100,8 @@ export class CustomResourcesConstruct extends Construct {
       handler: 'custom-resource/index.handler',
       timeout: Duration.minutes(1),
       memorySize: 128,
-      code: Code.fromBucket(this.sourceCodeBucket, [props.sourceCodeKeyPrefix, 'custom-resource.zip'].join('/')),
+      // code: Code.fromBucket(this.sourceCodeBucket, [props.sourceCodeKeyPrefix, 'custom-resource.zip'].join('/')),
+      code: Code.fromAsset('../custom-resource/dist'),
       role: this.customResourceRole,
       environment: {
         SOLUTION_ID: props.solutionId,
