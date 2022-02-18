@@ -27,7 +27,7 @@ export class ServerlessImageHandlerStack extends Stack {
       type: 'String',
       description: `Would you like to enable Cross-Origin Resource Sharing (CORS) for the image handler API? Select 'Yes' if so.`,
       allowedValues: ['Yes', 'No'],
-      default: 'No'
+      default: 'Yes'
     });
 
     const corsOriginParameter = new CfnParameter(this, 'CorsOriginParameter', {
@@ -41,7 +41,7 @@ export class ServerlessImageHandlerStack extends Stack {
       description:
         '(Required) List the buckets (comma-separated) within your account that contain original image files. If you plan to use Thumbor or Custom image requests with this solution, the source bucket for those requests will be the first bucket listed in this field.',
       allowedPattern: '.+',
-      default: 'defaultBucket, bucketNo2, bucketNo3, ...'
+      default: 'everbloom-assets-dev'
     });
 
     const deployDemoUIParameter = new CfnParameter(this, 'DeployDemoUIParameter', {
@@ -56,14 +56,14 @@ export class ServerlessImageHandlerStack extends Stack {
       type: 'Number',
       description: 'This solution automatically logs events to Amazon CloudWatch. Select the amount of time for CloudWatch logs from this solution to be retained (in days).',
       allowedValues: ['1', '3', '5', '7', '14', '30', '60', '90', '120', '150', '180', '365', '400', '545', '731', '1827', '3653'],
-      default: '1'
+      default: '7'
     });
 
     const autoWebPParameter = new CfnParameter(this, 'AutoWebPParameter', {
       type: 'String',
       description: `Would you like to enable automatic WebP based on accept headers? Select 'Yes' if so.`,
       allowedValues: ['Yes', 'No'],
-      default: 'No'
+      default: 'Yes'
     });
 
     const enableSignatureParameter = new CfnParameter(this, 'EnableSignatureParameter', {
@@ -89,19 +89,19 @@ export class ServerlessImageHandlerStack extends Stack {
       type: 'String',
       description: `Would you like to enable the default fallback image? If so, select 'Yes' and provide FallbackImageS3Bucket and FallbackImageS3Key values.`,
       allowedValues: ['Yes', 'No'],
-      default: 'No'
+      default: 'Yes'
     });
 
     const fallbackImageS3BucketParameter = new CfnParameter(this, 'FallbackImageS3BucketParameter', {
       type: 'String',
       description: 'The name of the Amazon S3 bucket which contains the default fallback image. e.g. my-fallback-image-bucket',
-      default: ''
+      default: 'everbloom-assets-dev'
     });
 
     const fallbackImageS3KeyParameter = new CfnParameter(this, 'FallbackImageS3KeyParameter', {
       type: 'String',
       description: 'The name of the default fallback image object key including prefix. e.g. prefix/image.jpg',
-      default: ''
+      default: 'logo.jpg'
     });
 
     const cloudFrontPriceClassParameter = new CfnParameter(this, 'CloudFrontPriceClassParameter', {
